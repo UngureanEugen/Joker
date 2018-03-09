@@ -20,6 +20,10 @@ apply plugin: 'war'
 apply plugin: 'com.google.cloud.tools.appengine'
 apply plugin: 'com.google.cloud.tools.endpoints-framework-server'
 
+appengine {  // App Engine tasks configuration
+    tools.cloudSdkHome="/Users/eugenungurean/Documents/google-cloud-sdk/"
+}
+
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
@@ -30,4 +34,5 @@ dependencies {
     implementation 'javax.servlet:servlet-api:2.5'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
+    compile project(path: ':javaJokes')
 }
