@@ -7,12 +7,11 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    private EndpointAsyncTask task;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +41,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void tellJoke(View view) {
-        if (task != null) {
-            task.cancel(true);
-            task = null;
-        }
-        task = new EndpointAsyncTask();
-        task.execute(new Pair<Context, String>(this, "tell joke"));
-    }
-
-
 }
