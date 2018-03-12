@@ -41,6 +41,17 @@ android {
   }
 }
 
+task jokerTestTask() {
+  group 'verification'
+  description '1. Launches the GCE local development server; 2. Runs all tests; 3. Shuts the server down again'
+  dependsOn ":backend:appengineStart"
+  dependsOn "connectedAndroidTest"
+  finalizedBy ":backend:appengineStop"
+  doLast {
+    println "Finished"
+  }
+}
+
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   endpointsServer project(path: ':backend', configuration: 'endpoints')

@@ -61,15 +61,19 @@ public class EndpointAsyncTask extends AsyncTask<Pair<Context, String>, Void, St
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
-        progressBar = ((Activity) context).findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.VISIBLE);
+        if (context instanceof Activity) {
+            progressBar = ((Activity) context).findViewById(R.id.progress_bar);
+            progressBar.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     protected void onPostExecute(String joke) {
         try {
             if (!isCancelled() && context != null) {
-                progressBar.setVisibility(View.GONE);
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.GONE);
+                }
                 Intent intent = new Intent(context, JokeActivity.class);
                 intent.putExtra(JokeActivity.JOKE_KEY, joke);
                 context.startActivity(intent);
